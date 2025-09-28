@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Ngày hôm nay -->
+        <TextView
+            android:id="@+id/txtthucan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="THUC AN"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp" />
+
+
+        <!-- Nút thêm -->
+        <Button
+            android:id="@+id/btnThemThucAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm" />
+        <!-- Danh sách món ăn -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvThucAn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_thucan"/>
+
+
+    </LinearLayout>
+
+    <!-- Thanh điều hướng -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemIconSize="40dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu" />
+
+</RelativeLayout>

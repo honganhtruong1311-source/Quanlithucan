@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@android:color/white"
+    android:elevation="2dp">
+
+    <!-- Ngày -->
+    <TextView
+        android:id="@+id/txtNgay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ngày: 2025-10-01"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
+    <!-- Bữa sáng -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/txtSang"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Sáng: Phở bò (300 kcal)"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnSuaSang"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/btnXoaSang"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_delete" />
+    </LinearLayout>
+
+    <!-- Bữa trưa -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/txtTrua"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Trưa: Cơm gà (600 kcal)"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnSuaTrua"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/btnXoaTrua"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_delete" />
+    </LinearLayout>
+
+    <!-- Bữa tối -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/txtToi"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Tối: Cá kho (400 kcal)"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnSuaToi"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/btnXoaToi"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_delete" />
+    </LinearLayout>
+
+    <!-- Tổng calo -->
+    <TextView
+        android:id="@+id/txtTongCalo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng: 1300 kcal"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:paddingTop="8dp"/>
+</LinearLayout>

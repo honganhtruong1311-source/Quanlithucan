@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm Thức Ăn"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="12dp"/>
+
+        <!-- Nhập ngày -->
+        <EditText
+            android:id="@+id/edtNgay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày (VD: 2025-10-01)"
+            android:inputType="date" />
+
+        <!-- Bữa sáng -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bữa sáng"
+            android:textStyle="bold"
+            android:paddingTop="12dp"/>
+        <EditText
+            android:id="@+id/edtSang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên món ăn sáng"/>
+        <EditText
+            android:id="@+id/edtCaloSang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calo bữa sáng"
+            android:inputType="number"/>
+
+        <!-- Bữa trưa -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bữa trưa"
+            android:textStyle="bold"
+            android:paddingTop="12dp"/>
+        <EditText
+            android:id="@+id/edtTrua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên món ăn trưa"/>
+        <EditText
+            android:id="@+id/edtCaloTrua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calo bữa trưa"
+            android:inputType="number"/>
+
+        <!-- Bữa tối -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bữa tối"
+            android:textStyle="bold"
+            android:paddingTop="12dp"/>
+        <EditText
+            android:id="@+id/edtToi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên món ăn tối"/>
+        <EditText
+            android:id="@+id/edtCaloToi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calo bữa tối"
+            android:inputType="number"/>
+
+        <!-- Nút lưu -->
+        <Button
+            android:id="@+id/btnLuuThucAn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu vào danh sách"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+</ScrollView>
