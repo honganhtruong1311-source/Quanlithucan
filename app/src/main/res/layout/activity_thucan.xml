@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activity_thucan">
 
-    <LinearLayout
-        android:id="@+id/contentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
+    <!-- Hiển thị ngày hiện tại -->
+    <TextView
+        android:id="@+id/txtNgayHienTai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hôm nay: ..."
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_gravity="start"
+        android:layout_marginBottom="8dp" />
 
-        <!-- Ngày hôm nay -->
-        <TextView
-            android:id="@+id/txtthucan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="THUC AN"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp" />
-
-
-        <!-- Nút thêm -->
-        <Button
-            android:id="@+id/btnThemThucAn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Thêm" />
-        <!-- Danh sách món ăn -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvThucAn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/item_thucan"/>
-
-
-    </LinearLayout>
-
-    <!-- Thanh điều hướng -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView2"
+    <!-- Tiêu đề THỨC ĂN -->
+    <TextView
+        android:id="@+id/txtThucAn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconSize="40dp"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu" />
+        android:gravity="center"
+        android:text="THỨC ĂN"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginBottom="8dp" />
 
-</RelativeLayout>
+    <!-- Nút thêm -->
+    <Button
+        android:id="@+id/btnThemThucAn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm món ăn"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Danh sách món ăn -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvThucAn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_thucan" />
+
+</LinearLayout>

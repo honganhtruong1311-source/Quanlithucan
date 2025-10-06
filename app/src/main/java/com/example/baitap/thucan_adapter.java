@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class thucan_adapter extends RecyclerView.Adapter<thucan_adapter.ThucAnViewHolder> {
+public class thucan_adapter extends RecyclerView.Adapter<thucan_adapter.ViewHolder> {
     private Context context;
     private ArrayList<thucanngay> list;
 
@@ -25,90 +25,44 @@ public class thucan_adapter extends RecyclerView.Adapter<thucan_adapter.ThucAnVi
 
     @NonNull
     @Override
-    public ThucAnViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_thucan, parent, false);
-        return new ThucAnViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ThucAnViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         thucanngay item = list.get(position);
 
         holder.txtNgay.setText("Ngày: " + item.getNgay());
-        holder.txtSang.setText("Sáng: " + item.getSang());
-        holder.txtTrua.setText("Trưa: " + item.getTrua());
-        holder.txtToi.setText("Tối: " + item.getToi());
-        holder.txtTongCalo.setText("Tổng: " + item.getTongCalo() + " kcal");
-        // 🔹 Nhấn giữ để xóa item
+        holder.txtSang.setText(item.getSang());
+        holder.txtTrua.setText(item.getTrua());
+        holder.txtToi.setText(item.getToi());
+        holder.txtTong.setText("Tổng: " + item.getTongCalo() + " kcal");
+
+        // Nhấn giữ để xoá toàn bộ ngày
         holder.itemView.setOnLongClickListener(v -> {
             new AlertDialog.Builder(context)
                     .setTitle("Xóa ngày " + item.getNgay())
-                    .setMessage("Bạn có chắc chắn muốn xóa toàn bộ ngày này?")
-                    .setPositiveButton("Có", (dialog, which) -> {
+                    .setMessage("Bạn có chắc chắn muốn xóa toàn bộ ngày này không?")
+                    .setPositiveButton("Có", (d, w) -> {
                         list.remove(position);
                         notifyItemRemoved(position);
-
-                        // lưu lại sau khi xóa
                         save_thucan.saveList(context, list);
                     })
                     .setNegativeButton("Không", null)
                     .show();
-            return true; // trả về true để xác nhận đã xử lý long click
+            return true;
         });
 
-        // XÓA bữa sáng
-        holder.btnXoaSang.setOnClickListener(v -> {
-            new AlertDialog.Builder(context)
-                    .setTitle("Xóa bữa sáng")
-                    .setMessage("Bạn có chắc chắn muốn xóa bữa sáng này?")
-                    .setPositiveButton("Có", (dialog, which) -> {
-                        item.setSang("(đã xóa)");
-                        item.setTongCalo(tinhTong(item));
-                        notifyItemChanged(position);
+        // --- Nút sửa & xóa từng bữa ---
+        holder.btnSuaSang.setOnClickListener(v -> suaBua(item, "Sáng", position));
+        holder.btnSuaTrua.setOnClickListener(v -> suaBua(item, "Trưa", position));
+        holder.btnSuaToi.setOnClickListener(v -> suaBua(item, "Tối", position));
 
-                        // 🔹 Lưu lại thay đổi
-                        save_thucan.saveList(context, list);
-                    })
-                    .setNegativeButton("Không", null)
-                    .show();
-        });
-
-        // XÓA bữa trưa
-        holder.btnXoaTrua.setOnClickListener(v -> {
-            new AlertDialog.Builder(context)
-                    .setTitle("Xóa bữa trưa")
-                    .setMessage("Bạn có chắc chắn muốn xóa bữa trưa này?")
-                    .setPositiveButton("Có", (dialog, which) -> {
-                        item.setTrua("(đã xóa)");
-                        item.setTongCalo(tinhTong(item));
-                        notifyItemChanged(position);
-
-                        save_thucan.saveList(context, list);
-                    })
-                    .setNegativeButton("Không", null)
-                    .show();
-        });
-
-        // XÓA bữa tối
-        holder.btnXoaToi.setOnClickListener(v -> {
-            new AlertDialog.Builder(context)
-                    .setTitle("Xóa bữa tối")
-                    .setMessage("Bạn có chắc chắn muốn xóa bữa tối này?")
-                    .setPositiveButton("Có", (dialog, which) -> {
-                        item.setToi("(đã xóa)");
-                        item.setTongCalo(tinhTong(item));
-                        notifyItemChanged(position);
-
-                        save_thucan.saveList(context, list);
-                    })
-                    .setNegativeButton("Không", null)
-                    .show();
-        });
-
-        // SỬA bữa sáng
-        holder.btnSuaSang.setOnClickListener(v -> showEditDialog(item, "Sáng", position));
-        holder.btnSuaTrua.setOnClickListener(v -> showEditDialog(item, "Trưa", position));
-        holder.btnSuaToi.setOnClickListener(v -> showEditDialog(item, "Tối", position));
+        holder.btnXoaSang.setOnClickListener(v -> xoaBua(item, "Sáng", position));
+        holder.btnXoaTrua.setOnClickListener(v -> xoaBua(item, "Trưa", position));
+        holder.btnXoaToi.setOnClickListener(v -> xoaBua(item, "Tối", position));
     }
 
     @Override
@@ -116,75 +70,76 @@ public class thucan_adapter extends RecyclerView.Adapter<thucan_adapter.ThucAnVi
         return list.size();
     }
 
-    private void showEditDialog(thucanngay item, String buoi, int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Sửa bữa " + buoi);
+    // ----- HÀM XỬ LÝ -----
+    private void suaBua(thucanngay item, String bua, int pos) {
+        View view = LayoutInflater.from(context).inflate(R.layout.sua_bua, null);
+        EditText edtTen = view.findViewById(R.id.edtTenMonSua);
+        EditText edtCalo = view.findViewById(R.id.edtCaloSua);
 
-        View viewInflated = LayoutInflater.from(context).inflate(R.layout.sua_bua, null);
-        EditText edtMon = viewInflated.findViewById(R.id.edtMon);
-        EditText edtCalo = viewInflated.findViewById(R.id.edtCalo);
+        new AlertDialog.Builder(context)
+                .setView(view)
+                .setTitle("Sửa bữa " + bua)
+                .setPositiveButton("Lưu", (d, w) -> {
+                    String ten = edtTen.getText().toString();
+                    int calo = 0;
+                    try { calo = Integer.parseInt(edtCalo.getText().toString()); } catch (Exception e) {}
 
-        builder.setView(viewInflated);
+                    String mon = ten + " (" + calo + " kcal)";
+                    if (bua.equals("Sáng")) item.setSang(mon);
+                    if (bua.equals("Trưa")) item.setTrua(mon);
+                    if (bua.equals("Tối")) item.setToi(mon);
+                    item.setTongCalo(tinhTong(item));
+                    notifyItemChanged(pos);
+                    save_thucan.saveList(context, list);
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
 
-        builder.setPositiveButton("Lưu", (dialog, which) -> {
-            String mon = edtMon.getText().toString();
-            int calo = 0;
-            try {
-                calo = Integer.parseInt(edtCalo.getText().toString());
-            } catch (NumberFormatException e) {
-                calo = 0;
-            }
-            String text = mon + " (" + calo + " kcal)";
-
-            if (buoi.equals("Sáng")) {
-                item.setSang(text);
-            } else if (buoi.equals("Trưa")) {
-                item.setTrua(text);
-            } else if (buoi.equals("Tối")) {
-                item.setToi(text);
-            }
-
-            item.setTongCalo(tinhTong(item));
-            notifyItemChanged(position);
-
-            // 🔹 Lưu lại thay đổi
-            save_thucan.saveList(context, list);
-        });
-
-        builder.setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss());
-        builder.show();
+    private void xoaBua(thucanngay item, String bua, int pos) {
+        new AlertDialog.Builder(context)
+                .setTitle("Xóa bữa " + bua)
+                .setMessage("Bạn có chắc chắn muốn xóa bữa " + bua + " này không?")
+                .setPositiveButton("Có", (d, w) -> {
+                    if (bua.equals("Sáng")) item.setSang("(đã xóa)");
+                    if (bua.equals("Trưa")) item.setTrua("(đã xóa)");
+                    if (bua.equals("Tối")) item.setToi("(đã xóa)");
+                    item.setTongCalo(tinhTong(item));
+                    notifyItemChanged(pos);
+                    save_thucan.saveList(context, list);
+                })
+                .setNegativeButton("Không", null)
+                .show();
     }
 
     private int tinhTong(thucanngay item) {
         return layCalo(item.getSang()) + layCalo(item.getTrua()) + layCalo(item.getToi());
     }
 
-    private int layCalo(String text) {
-        if (text == null) return 0;
+    private int layCalo(String s) {
+        if (s == null) return 0;
         try {
-            int start = text.indexOf("(");
-            int end = text.indexOf("kcal");
+            int start = s.indexOf("(");
+            int end = s.indexOf("kcal");
             if (start >= 0 && end > start) {
-                String number = text.substring(start + 1, end).trim();
-                return Integer.parseInt(number);
+                String num = s.substring(start + 1, end).trim();
+                return Integer.parseInt(num);
             }
-        } catch (Exception e) {
-            return 0;
-        }
+        } catch (Exception ignored) {}
         return 0;
     }
 
-    public static class ThucAnViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNgay, txtSang, txtTrua, txtToi, txtTongCalo;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView txtNgay, txtSang, txtTrua, txtToi, txtTong;
         ImageButton btnSuaSang, btnXoaSang, btnSuaTrua, btnXoaTrua, btnSuaToi, btnXoaToi;
 
-        public ThucAnViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNgay = itemView.findViewById(R.id.txtNgay);
             txtSang = itemView.findViewById(R.id.txtSang);
             txtTrua = itemView.findViewById(R.id.txtTrua);
             txtToi = itemView.findViewById(R.id.txtToi);
-            txtTongCalo = itemView.findViewById(R.id.txtTongCalo);
+            txtTong = itemView.findViewById(R.id.txtTongCalo);
 
             btnSuaSang = itemView.findViewById(R.id.btnSuaSang);
             btnXoaSang = itemView.findViewById(R.id.btnXoaSang);
