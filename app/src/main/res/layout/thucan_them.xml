@@ -5,91 +5,108 @@
     android:padding="16dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <!-- Tiêu đề -->
         <TextView
+            android:id="@+id/txtTieuDeThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thêm Thức Ăn"
+            android:text="Thêm Thức Ăn Trong Ngày"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:padding="12dp"/>
-
-        <!-- Nhập ngày -->
-        <EditText
-            android:id="@+id/edtNgay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ngày (VD: 2025-10-01)"
-            android:inputType="date" />
+            android:layout_marginBottom="16dp" />
 
         <!-- Bữa sáng -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bữa sáng"
+            android:text="🍳 Bữa sáng:"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingTop="12dp"/>
+            android:layout_marginBottom="4dp" />
+
         <EditText
             android:id="@+id/edtSang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên món ăn sáng"/>
+            android:hint="Nhập món ăn buổi sáng"
+            android:inputType="text"
+            android:layout_marginBottom="4dp" />
+
         <EditText
             android:id="@+id/edtCaloSang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Calo bữa sáng"
-            android:inputType="number"/>
+            android:hint="Nhập calo bữa sáng"
+            android:inputType="number"
+            android:layout_marginBottom="16dp" />
 
         <!-- Bữa trưa -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bữa trưa"
+            android:text="🍱 Bữa trưa:"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingTop="12dp"/>
+            android:layout_marginBottom="4dp" />
+
         <EditText
             android:id="@+id/edtTrua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên món ăn trưa"/>
+            android:hint="Nhập món ăn buổi trưa"
+            android:inputType="text"
+            android:layout_marginBottom="4dp" />
+
         <EditText
             android:id="@+id/edtCaloTrua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Calo bữa trưa"
-            android:inputType="number"/>
+            android:hint="Nhập calo bữa trưa"
+            android:inputType="number"
+            android:layout_marginBottom="16dp" />
 
         <!-- Bữa tối -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bữa tối"
+            android:text="🍲 Bữa tối:"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingTop="12dp"/>
+            android:layout_marginBottom="4dp" />
+
         <EditText
             android:id="@+id/edtToi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên món ăn tối"/>
+            android:hint="Nhập món ăn buổi tối"
+            android:inputType="text"
+            android:layout_marginBottom="4dp" />
+
         <EditText
             android:id="@+id/edtCaloToi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Calo bữa tối"
-            android:inputType="number"/>
+            android:hint="Nhập calo bữa tối"
+            android:inputType="number"
+            android:layout_marginBottom="24dp" />
 
         <!-- Nút lưu -->
         <Button
             android:id="@+id/btnLuuThucAn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu vào danh sách"
-            android:layout_marginTop="20dp"/>
+            android:text="Lưu"
+            android:textAllCaps="false"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:padding="8dp" />
+
     </LinearLayout>
 </ScrollView>

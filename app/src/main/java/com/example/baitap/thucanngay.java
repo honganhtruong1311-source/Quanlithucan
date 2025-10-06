@@ -1,7 +1,6 @@
 package com.example.baitap;
 
 import java.io.Serializable;
-import java.io.Serializable;
 
 public class thucanngay implements Serializable {
     private String ngay;
@@ -18,45 +17,15 @@ public class thucanngay implements Serializable {
         this.tongCalo = tongCalo;
     }
 
-    // Getter
-    public String getNgay() {
-        return ngay;
-    }
+    public String getNgay() { return ngay; }
+    public String getSang() { return sang; }
+    public String getTrua() { return trua; }
+    public String getToi() { return toi; }
+    public int getTongCalo() { return tongCalo; }
 
-    public String getSang() {
-        return sang;
-    }
-
-    public String getTrua() {
-        return trua;
-    }
-
-    public String getToi() {
-        return toi;
-    }
-
-    public int getTongCalo() {
-        return tongCalo;
-    }
-
-    // Setter nếu cần
-    public void setNgay(String ngay) {
-        this.ngay = ngay;
-    }
-
-    public void setSang(String sang) {
-        this.sang = sang;
-    }
-
-    public void setTrua(String trua) {
-        this.trua = trua;
-    }
-
-    public void setToi(String toi) {
-        this.toi = toi;
-    }
-
-    public void setTongCalo(int tongCalo) {
-        this.tongCalo = tongCalo;
-    }
+    public void setNgay(String ngay) { this.ngay = ngay; }
+    public void setSang(String sang) { this.sang = sang; }
+    public void setTrua(String trua) { this.trua = trua; }
+    public void setToi(String toi) { this.toi = toi; }
+    public void setTongCalo(int tongCalo) { this.tongCalo = tongCalo; }
 }
