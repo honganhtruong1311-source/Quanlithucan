@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".activity_thucan">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9F9">
 
-    <!-- Hiển thị ngày hiện tại -->
     <TextView
-        android:id="@+id/txtNgayHienTai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hôm nay: ..."
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_gravity="start"
-        android:layout_marginBottom="8dp" />
-
-    <!-- Tiêu đề THỨC ĂN -->
-    <TextView
-        android:id="@+id/txtThucAn"
+        android:id="@+id/tvNgay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="THỨC ĂN"
-        android:textSize="22sp"
+        android:text="Ngày hôm nay: 07/10/2025"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_dark"
-        android:layout_marginBottom="8dp" />
+        android:textColor="#000000"
+        android:gravity="center" />
 
-    <!-- Nút thêm -->
+    <TextView
+        android:id="@+id/tvTongCalo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng calo hấp thu: 0 kcal"
+        android:textSize="16sp"
+        android:textColor="#009688"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center" />
+
+    <ListView
+        android:id="@+id/listThucAn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#CCCCCC"
+        android:dividerHeight="1dp"
+        android:background="@android:color/white" />
+
     <Button
         android:id="@+id/btnThemThucAn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Thêm món ăn"
-        android:layout_marginBottom="10dp" />
-
-    <!-- Danh sách món ăn -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvThucAn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/item_thucan" />
+        android:backgroundTint="#009688"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-medium" />
 
 </LinearLayout>

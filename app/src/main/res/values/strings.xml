@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">baitap</string>
+    <string-array name="buaan_array">
+        <item>Bữa sáng</item>
+        <item>Bữa trưa</item>
+        <item>Bữa tối</item>
+    </string-array>
+
 </resources>

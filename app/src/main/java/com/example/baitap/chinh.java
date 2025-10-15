@@ -30,7 +30,7 @@ public class chinh extends AppCompatActivity {
                 return true;
             }
             else if (id == R.id.menu_thucan) {
-                startActivity(new Intent(this, activity_thucan.class));
+                startActivity(new Intent(this, ThucAn_activity.class));
                 return true;
             }
 //            else if (id == R.id.menu_uongnuoc) {
